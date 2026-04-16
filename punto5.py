@@ -25,12 +25,12 @@ class AgentePendulo:
         self.historial_omega.append(self.omega)
 
 agentes = [
-    AgentePendulo(theta0=np.radians(150), omega0=0.0),   # muy abierto
-    AgentePendulo(theta0=np.radians(90),  omega0=1.0),   # posición media
-    AgentePendulo(theta0=np.radians(45),  omega0=-1.5),  # con velocidad
-    AgentePendulo(theta0=np.radians(170), omega0=0.5),   # casi vertical
-    AgentePendulo(theta0=np.radians(20),  omega0=2.0),   # poco ángulo
-    AgentePendulo(theta0=np.radians(120), omega0=-2.0),  # velocidad negativa
+    AgentePendulo(theta0=np.radians(150), omega0=0.0),
+    AgentePendulo(theta0=np.radians(90),  omega0=1.0),
+    AgentePendulo(theta0=np.radians(45),  omega0=-1.5),
+    AgentePendulo(theta0=np.radians(170), omega0=0.5),
+    AgentePendulo(theta0=np.radians(20),  omega0=2.0),
+    AgentePendulo(theta0=np.radians(120), omega0=-2.0),
 ]
 
 colores = ['red', 'blue', 'green', 'orange', 'purple', 'cyan']
