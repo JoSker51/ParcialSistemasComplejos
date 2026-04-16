@@ -87,21 +87,3 @@ El espacio de fases muestra visualmente cómo trayectorias muy distintas espiral
 **Gráfico generado:** `atractor_pendulo.png`
 
 ---
-
-## Requisitos
-
-```bash
-pip install numpy matplotlib
-```
-
-## Uso
-
-Cada archivo es independiente y se ejecuta directamente:
-
-```bash
-python punto1.py
-python punto2.py
-python punto3.py
-python punto4.py
-python punto5.py
-```
