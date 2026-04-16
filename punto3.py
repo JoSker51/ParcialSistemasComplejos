@@ -76,7 +76,7 @@ class Red:
             p = ag.principal
             if p.wire is not None:
                 vecino = p.wire.agente
-                if p.wire is vecino.principal:          # ambos son puertos principales
+                if p.wire is vecino.principal:
                     clave = tuple(sorted([id(ag), id(vecino)]))
                     if clave not in vistos:
                         vistos.add(clave)
@@ -97,7 +97,7 @@ def construir_numero(n: int, red: Red) -> Agente:
     Devuelve el agente cuyo principal está libre (la "cabeza" del número).
     """
     cero = red.agregar(Agente("0", 0))
-    agente_actual = cero   # empezamos desde 0
+    agente_actual = cero
 
     for _ in range(n):
         s = red.agregar(Agente("S", 1))
@@ -127,9 +127,9 @@ def regla_add_cero(add: Agente, cero: Agente, red: Red):
 
 def regla_add_sucesor(add: Agente, s: Agente, red: Red):
 
-    puerto_x_interior = s.aux(1).wire         # principal del agente que representa x
-    puerto_y_cabeza   = add.aux(2).wire        # principal de la cabeza de y
-    puerto_salida     = add.aux(1).wire        # quien consume el resultado (puede ser libre→None)
+    puerto_x_interior = s.aux(1).wire
+    puerto_y_cabeza   = add.aux(2).wire
+    puerto_salida     = add.aux(1).wire
 
     desconectar(add.principal, s.principal)
 
