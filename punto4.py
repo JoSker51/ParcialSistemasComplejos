@@ -11,7 +11,7 @@ import numpy as np
 DELTA = 4.669201609102990  # Constante de Feigenbaum
 R_INF = 3.569945671870944  # Valor de r donde comienza el caos
 
-# Bifurcaciones conocidas del mapa logístico
+# Bifurcaciones
 BIFURCACIONES = [3.0000, 3.4495, 3.5441, 3.5644, 3.5688, 3.5697]
 
 
