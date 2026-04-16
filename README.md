@@ -1,6 +1,6 @@
 # Parcial 2 — Sistemas Complejos
 
-Soluciones al segundo parcial del curso de Sistemas Complejos. Cada punto aborda un concepto distinto de la teoría de sistemas complejos, implementado en Python.
+Jose Santiago Gonzalez Enriquez
 
 ---
 
