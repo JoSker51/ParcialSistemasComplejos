@@ -6,24 +6,50 @@ Jose Santiago Gonzalez Enriquez
 
 ## Punto 1 — Complejidad de Internet: Entropía de Shannon (`punto1.py`)
 
-Internet es complejo porque millones de nodos intercambian tráfico de manera impredecible. Para cuantificar esa complejidad se usa la **Entropía de Shannon**: una medida de qué tan impredecible o distribuido es el tráfico en la red. Si el tráfico está repartido entre muchos nodos, la entropía es alta y el sistema es complejo. Si casi todo el tráfico va a un solo nodo (como en un ataque DDoS), la entropía cae y el sistema se vuelve trivialmente predecible.
-
-```
+Internet es un sistema complejo: millones de nodos intercambian tráfico de manera impredecible, interdependiente y a una escala que crece sin límite. Para demostrar esa complejidad formalmente se usa la **Entropía de Shannon** como métrica central, que cuantifica qué tan impredecible o distribuido es el tráfico en la red.
 H(X) = −∑ pᵢ · log₂(pᵢ)
-```
 
-Donde `pᵢ` es la probabilidad de que el tráfico se dirija a cada nodo (router/servidor).
+Donde `pᵢ` es la probabilidad de que el tráfico se dirija al nodo `i` (router/servidor).
 
-Se simulan 4 escenarios:
+### Argumento: tres condiciones de complejidad
 
-| Escenario | Descripción | Entropía |
-|---|---|---|
-| Uniforme | Tráfico perfectamente distribuido | Máxima |
-| Normal (Zipf) | Distribución realista de Internet | Alta |
-| Congestión | Pocos nodos concentran el tráfico | Media |
-| DDoS | Un nodo recibe el 95% del tráfico | Mínima |
+El modelo no solo calcula entropía — la usa para verificar formalmente que Internet satisface las condiciones de un sistema complejo. Se proponen tres condiciones medibles:
 
-También se calcula la **información mutua** entre nodos para medir el acoplamiento entre routers vecinos.
+**Condición 1 — Alta entropía estructural (`C > 0.6`)**
+
+Se define la complejidad normalizada como:
+C = H(X) / H_max,    donde H_max = log₂(n)
+
+Si el tráfico estuviera concentrado en un solo nodo, `H → 0` y el sistema sería trivialmente predecible. En operación normal (distribución Zipf, que es la distribución real del tráfico en Internet), `C ≈ 92%`, muy por encima del umbral. Un ataque DDoS colapsa `C` a ~5%, eliminando la complejidad. Esto demuestra que la complejidad de Internet es una propiedad del estado distribuido de la red, no una característica fija.
+
+**Condición 2 — Interdependencia entre nodos (`I(X;Y) > 0`)**
+
+Si los nodos fueran independientes, conocer el estado de uno no diría nada sobre el estado de otro. La **información mutua** mide exactamente eso:
+I(X;Y) = H(X) − H(X|Y)
+
+Un valor `I(X;Y) > 0` demuestra que los nodos están acoplados: el tráfico en un router informa sobre el tráfico en sus vecinos. Esto es interdependencia estructural, una propiedad definitoria de los sistemas complejos. El modelo la calcula sobre una matriz de probabilidad conjunta entre nodos vecinos.
+
+**Condición 3 — Escalabilidad ilimitada de la complejidad**
+
+La entropía máxima crece logarítmicamente con el número de nodos:
+H_max(n) = log₂(n)
+
+Para una LAN de 10 nodos, `H_max ≈ 3.32 bits`. Para un fragmento de 200 nodos, `H_max ≈ 7.64 bits`. Para los ~5×10⁹ dispositivos activos en Internet, `H_max > 32 bits`. Esto significa que la complejidad potencial de Internet no tiene techo práctico — crece cada vez que un nuevo dispositivo se conecta. La complejidad no es accidental: está **garantizada estructuralmente** por la escala de la red.
+
+### Las tres condiciones se verifican computacionalmente
+
+El script evalúa las tres condiciones y emite un veredicto explícito. Las tres se cumplen bajo operación normal, confirmando que Internet es un sistema complejo bajo el modelo de Shannon.
+
+### Escenarios simulados
+
+| Escenario | Descripción | Entropía | Complejidad C |
+|---|---|---|---|
+| Uniforme | Tráfico perfectamente distribuido | Máxima | 100% |
+| Normal (Zipf) | Distribución realista de Internet | Alta | ~92% |
+| Congestión | Pocos nodos concentran el tráfico | Media | ~65% |
+| DDoS | Un nodo recibe el 95% del tráfico | Mínima | ~5% |
+
+Los escenarios de degradación (congestión, DDoS) no son solo ilustrativos: muestran que la complejidad de Internet puede **colapsar** cuando la distribución del tráfico se rompe, lo que refuerza que la entropía es un indicador real del estado del sistema.
 
 **Gráficos generados:** `shannon_internet.png`, `entropia_vs_nodos.png`
 
