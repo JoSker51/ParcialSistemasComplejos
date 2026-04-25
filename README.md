@@ -94,22 +94,33 @@ Dado que δ es universal, un ingeniero que observa dos bifurcaciones en su siste
 
 ---
 
-## Punto 5 — Atractor con modelamiento basado en agentes (`punto5.py`)
+## Punto 5 — Atractor de Lorenz con modelamiento basado en agentes (`punto5_lorenz.nlogo`)
 
-Un **atractor** es un estado al que un sistema dinámico regresa inevitablemente, sin importar desde dónde empiece. Para demostrarlo se usa el modelamiento basado en agentes: en vez de analizar una sola trayectoria, se simulan múltiples agentes independientes con condiciones iniciales muy distintas y se observa que todos convergen al mismo punto. Si el sistema tiene un atractor, esa convergencia ocurre siempre — eso es precisamente lo que lo define.
+Un **atractor** es una estructura en el espacio de fases hacia la cual un sistema dinámico converge inevitablemente, sin importar desde dónde empiece. Para demostrarlo se usa un **modelo basado en agentes (ABM)** en NetLogo: en lugar de analizar una sola trayectoria, se lanzan múltiples agentes con condiciones iniciales completamente distintas y se observa que todos terminan atrapados en la misma estructura — eso es exactamente la definición de atractor.
 
-Se implementa un **modelamiento basado en agentes (ABM)** usando un péndulo amortiguado para demostrar el concepto de **atractor de punto fijo**.
+El sistema elegido es el **Atractor de Lorenz**, descrito por las ecuaciones:
+dx/dt = σ(y − x)
+dy/dt = x(ρ − z) − y
+dz/dt = xy − βz
 
-Cada agente es un péndulo independiente con condiciones iniciales distintas (ángulo y velocidad). Todos evolucionan siguiendo la ecuación de movimiento:
+Con los parámetros clásicos: `σ=10, ρ=28, β=8/3`
 
-```
-α = −(g/L)·sin(θ) − b·ω
-```
+### Rol de los agentes
 
-El amortiguamiento `b` drena energía progresivamente. Sin importar las condiciones iniciales, **todos los agentes convergen al punto (θ=0, ω=0)**, que es el atractor.
+Cada turtle es una partícula independiente en el espacio de fases `(x, y, z)`. En cada tick actualiza su posición integrando las ecuaciones de Lorenz por el método de Euler con paso `dt`. Ningún agente conoce la posición de los otros — evolucionan en paralelo, sin comunicación.
 
-El espacio de fases muestra visualmente cómo trayectorias muy distintas espiralan hacia el mismo punto.
+### Lo que se observa
 
-**Gráfico generado:** `atractor_pendulo.png`
+Al ejecutar el modelo, los agentes parten de posiciones muy dispersas (controladas por el slider `dispersion-inicial`). Con el tiempo, **todos quedan atrapados en la misma estructura de doble lóbulo** (la "mariposa" de Lorenz), aunque sus trayectorias individuales sean distintas. Esto confirma que el atractor es una propiedad del sistema, no de las condiciones iniciales.
+
+### Controles
+
+| Slider | Descripción | Valor sugerido |
+|---|---|---|
+| `n-agentes` | Número de partículas independientes | 15 |
+| `dt` | Paso de integración de Euler | 0.008 |
+| `dispersion-inicial` | Dispersión de condiciones iniciales | 25 |
+
+**Requiere:** NetLogo 6.4.0 o superior
 
 ---
