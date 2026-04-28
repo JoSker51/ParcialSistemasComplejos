@@ -139,7 +139,8 @@ Las reglas como funciones de primera clase
 Las reglas de interacción (Def. 7.3) son funciones puras almacenadas
 en un diccionario. El par de símbolos (un frozenset, no ordenado) es la clave.
 Esto garantiza la segunda condición del libro: a lo más una regla por par.
-pythondef construir_sistema(gen_id: Callable[[], int]) -> Dict[FrozenSet[str], Regla]:
+
+    pythondef construir_sistema(gen_id: Callable[[], int]) -> Dict[FrozenSet[str], Regla]:
     return {
         frozenset({"add", "0"}): lambda red, a, b: regla_add_cero(...),
         frozenset({"add", "S"}): lambda red, a, b: regla_add_sucesor(...),
@@ -156,7 +157,8 @@ Los agentes add y 0 desaparecen. La red resultante expone el argumento
 y intacto, preservando la interfaz (condición 1 de Def. 7.3).
 Regla 2 — caso recursivo: add ⊳◁ S
 add(S(x), y) = S(add(x, y))
-pythondef regla_add_sucesor(red: Red, add: Agente, s: Agente,
+
+    pythondef regla_add_sucesor(red: Red, add: Agente, s: Agente,
                       gen_id: Callable[[], int]) -> Red:
     puerto_x_interior = red.conectado_a(s.aux(1))
     puerto_y          = red.conectado_a(add.aux(2))
@@ -176,7 +178,8 @@ pythondef regla_add_sucesor(red: Red, add: Agente, s: Agente,
 El estilo encadenado (.agregar().conectar().conectar()) es posible porque
 cada método devuelve una nueva Red, nunca muta la existente.
 Agente ε — borrador (Ejemplo 7.5)
-pythondef regla_erase(red: Red, epsilon: Agente, alpha: Agente,
+
+    pythondef regla_erase(red: Red, epsilon: Agente, alpha: Agente,
                 gen_id: Callable[[], int]) -> Red:
     puertos_aux = [red.conectado_a(alpha.aux(i)) for i in range(1, alpha.aridad + 1)]
     red2 = red.remover_agentes(frozenset({epsilon.id, alpha.id}))
@@ -195,7 +198,8 @@ El ciclo de reducción
 La reducción (Def. 7.3) es una función pura que aplica pasos hasta alcanzar
 la forma normal. paso_reduccion consulta el diccionario de reglas y devuelve
 None si ya no hay pares activos:
-pythondef paso_reduccion(red, sistema, verbose) -> Optional[Red]:
+
+    pythondef paso_reduccion(red, sistema, verbose) -> Optional[Red]:
     pares = red.pares_activos()
     if not pares:
         return None                        # forma normal
@@ -203,7 +207,7 @@ pythondef paso_reduccion(red, sistema, verbose) -> Optional[Red]:
     regla = sistema.get(frozenset({alpha.simbolo, beta.simbolo}))
     return regla(red, alpha, beta) if regla else None
 
-def reducir(red, sistema, verbose=True) -> Red:
+    def reducir(red, sistema, verbose=True) -> Red:
     paso = 0
     while True:
         resultado = paso_reduccion(red, sistema, verbose)
@@ -218,7 +222,8 @@ el mismo (confluencia fuerte).
 Construcción de números con reduce
 Los números naturales se representan como S^n(0). La construcción usa
 reduce de forma explícita, sin bucles mutables:
-pythondef construir_numero(n: int, gen_id: Callable[[], int]) -> Tuple[Red, Agente]:
+
+    pythondef construir_numero(n: int, gen_id: Callable[[], int]) -> Tuple[Red, Agente]:
     cero = Agente(gen_id(), "0", 0)
     red  = Red((cero,), frozenset())
 
@@ -232,7 +237,8 @@ pythondef construir_numero(n: int, gen_id: Callable[[], int]) -> Tuple[Red, Agen
 Cada llamada a paso devuelve un nuevo par (red, cabeza) sin modificar
 el anterior. reduce acumula la cadena S → S → ... → 0 puramente.
 La multiplicación también usa reduce:
-pythondef multiplicar(x: int, y: int, verbose: bool = True) -> int:
+
+    pythondef multiplicar(x: int, y: int, verbose: bool = True) -> int:
     return reduce(lambda acc, _: sumar(acc, y, verbose=False), range(x), 0)
 
 Síntesis
