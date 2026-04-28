@@ -4,7 +4,7 @@ Jose Santiago Gonzalez Enriquez
 
 ---
 
-## Punto 1 — Complejidad de Internet: Entropía de Shannon (`punto1.py`)
+## Punto 1 — Complejidad de Internet: Entropía de Shannon
 
 Internet es un sistema complejo: millones de nodos intercambian tráfico de manera impredecible, interdependiente y a una escala que crece sin límite. Para demostrar esa complejidad formalmente se usa la **Entropía de Shannon** como métrica central, que cuantifica qué tan impredecible o distribuido es el tráfico en la red.
 H(X) = −∑ pᵢ · log₂(pᵢ)
@@ -55,7 +55,7 @@ Los escenarios de degradación (congestión, DDoS) no son solo ilustrativos: mue
 
 ---
 
-## Punto 2 — Suma y multiplicación desde la función sucesor (`punto2.py`)
+## Punto 2 — Suma y multiplicación desde la función sucesor
 
 Implementación de aritmética básica partiendo únicamente de la **función sucesor** `S(n) = n + 1`, siguiendo la construcción de los **Números de Peano**.
 
@@ -66,7 +66,7 @@ Esto ilustra cómo comportamientos complejos (operaciones aritméticas) emergen 
 
 ---
 
-## Punto 3 — Interacción con Net Interactions (`punto3.py`)
+## Punto 3 — Interacción con Net Interactions
 
 Fundamento matemático: ¿qué es una red de interacción?
 Una red de interacción es un modelo de computación gráfico. La computación
