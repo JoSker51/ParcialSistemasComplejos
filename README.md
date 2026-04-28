@@ -70,8 +70,6 @@ Esto ilustra cómo comportamientos complejos (operaciones aritméticas) emergen 
 
 # Redes de Interacción — Definición del concepto mediante el código
 
-Este documento explica el concepto de **interacción** tal como lo define el Capítulo 7 de *Models of Computation* (Fernández, 2009), usando como referencia concreta la implementación en Python del archivo `punto3.py`.
-
 ---
 
 ## ¿Qué es una red de interacción?
