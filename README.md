@@ -68,11 +68,6 @@ Esto ilustra cómo comportamientos complejos (operaciones aritméticas) emergen 
 
 ## Punto 3 — Interacción con Net Interactions (`punto3.py`)
 
-Redes de Interacción — Definición funcional del concepto de Interacción
-Este documento explica el concepto de interacción tal como lo define el
-Capítulo 7 de Models of Computation (Fernández, 2009), usando como referencia
-la implementación en Python funcional del archivo punto3_funcional.py.
-
 Fundamento matemático: ¿qué es una red de interacción?
 Una red de interacción es un modelo de computación gráfico. La computación
 ocurre mediante agentes conectados por alambres que se transforman
@@ -82,10 +77,6 @@ Formalmente (Def. 7.1), cada símbolo de la red tiene una aridad fija.
 Un agente con aridad n tiene exactamente n + 1 puertos: un
 puerto principal y n puertos auxiliares.
 
-Principios funcionales aplicados
-La implementación usa programación funcional como vehículo para expresar
-el modelo matemático. Los principios usados son:
-PrincipioAplicación en el códigoDatos inmutablesAgente, Puerto y Red son NamedTuple / frozensetFunciones purasNinguna función modifica sus argumentos; siempre devuelve una nueva RedSin estado globalLos IDs se generan con un closure local (nuevo_generador)Funciones de orden superiorLas reglas de interacción son funciones almacenadas en un diccionarioreduce en lugar de buclesConstrucción de números y multiplicación usan functools.reduce
 
 Tipos de datos inmutables
 pythonclass Puerto(NamedTuple):
