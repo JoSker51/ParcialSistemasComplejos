@@ -253,7 +253,7 @@ por el par de símbolos. Esto garantiza unicidad de regla por par (Def. 7.3).
 La reducción es la aplicación sucesiva de esas funciones hasta
 alcanzar una forma normal única (Prop. 7.4).
 
-## Punto 4 — Constante de Feigenbaum δ en ingeniería (`punto4.py`)
+## Punto 4 — Constante de Feigenbaum δ en ingeniería
 
 Se usa la **constante de Feigenbaum** (δ ≈ 4.6692) para predecir el comportamiento de sistemas no lineales antes de que entren en caos.
 
@@ -275,7 +275,7 @@ Dado que δ es universal, un ingeniero que observa dos bifurcaciones en su siste
 
 ---
 
-## Punto 5 — Atractor de Lorenz con modelamiento basado en agentes (`punto5_lorenz.nlogo`)
+## Punto 5 — Atractor de Lorenz con modelamiento basado en agentes
 
 Un **atractor** es una estructura en el espacio de fases hacia la cual un sistema dinámico converge inevitablemente, sin importar desde dónde empiece. Para demostrarlo se usa un **modelo basado en agentes (ABM)** en NetLogo: en lugar de analizar una sola trayectoria, se lanzan múltiples agentes con condiciones iniciales completamente distintas y se observa que todos terminan atrapados en la misma estructura — eso es exactamente la definición de atractor.
 
