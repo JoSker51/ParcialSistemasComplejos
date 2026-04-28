@@ -120,7 +120,8 @@ Par activo (Def. 7.2)
 Un par activo α ⊳◁ β existe cuando el puerto principal de α está
 conectado directamente al puerto principal de β. Es la unidad mínima de
 computación: el análogo funcional de un redex.
-pythondef pares_activos(self) -> Tuple[Tuple[Agente, Agente], ...]:
+
+    pythondef pares_activos(self) -> Tuple[Tuple[Agente, Agente], ...]:
     for ag in self.agentes:
         vecino_puerto = self.conectado_a(ag.principal)
         if vecino_puerto is None:
